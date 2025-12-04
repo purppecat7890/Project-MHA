@@ -31,7 +31,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       # Replace with GitHub name
-      changelog: '**Full Changelog**: https://github.com/thomasglasser/NeoForge-Template/compare/'
+      changelog: '**Full Changelog**: https://github.com/purppecat7890/Project-MHA/compare/'
     permissions:
       contents: write
     strategy:
@@ -45,7 +45,7 @@ jobs:
         continue-on-error: false
         with:
           # Replace with mod name
-          name: NeoForge Template
+          name: Quirks Unleashed
           path: build/libs
 
       - name: Checking and setting the environment

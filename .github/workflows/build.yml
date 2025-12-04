@@ -28,6 +28,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           # Replace with mod name
-          name: NeoForge Template
+          name: Quirks Unleashed
           if-no-files-found: error
           path: build/libs

@@ -99,7 +99,7 @@ neoForge {
 	}
 
 	mods {
-		neoforgetemplate {
+		quirksunleashed {
 			sourceSet sourceSets.main
 		}
 	}
