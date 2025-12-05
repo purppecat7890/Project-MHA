@@ -58,6 +58,11 @@ repositories {
 		name = 'Mojang Meta'
 		url = 'https://maven.neoforged.net/mojang-meta'
 	}
+    mavenCentral()
+    maven {
+        name = "RedlanceMinecraft"
+        url = "https://repo.redlance.org/public"
+    }
 	mavenCentral()
 	mavenLocal()
 }
@@ -107,11 +112,20 @@ neoForge {
 
 configurations {
 	runtimeClasspath.extendsFrom localRuntime
+    configurations.configureEach {
+        resolutionStrategy {
+            force 'com.google.code.gson:gson:2.10.1'
+            force 'org.slf4j:slf4j-api:2.0.16'
+            force 'it.unimi.dsi:fastutil:8.5.15'
+            force 'io.netty:netty-buffer:4.1.115.Final'
+            force 'io.netty:netty-common:4.1.115.Final'
+        }
+    }
 }
 
 dependencies {
 	jarJar implementation("dev.thomasglasser.tommylib:tommylib-neoforge-${minecraft_version}:${tommylib_version}")
-
+    implementation "com.zigythebird.playeranim:PlayerAnimationLibNeo:$project.pal_version"
 	// Runtime
 	localRuntime "maven.modrinth:jade:${jade_version}+neoforge"
 	localRuntime "mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}"
