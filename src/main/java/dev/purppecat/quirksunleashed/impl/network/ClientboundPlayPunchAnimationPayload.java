@@ -18,10 +18,6 @@ import net.minecraft.world.entity.player.Player;
 import static com.zigythebird.playeranim.PlayerAnimLibMod.ANIMATION_LAYER_ID;
 
 public class ClientboundPlayPunchAnimationPayload implements ExtendedPacketPayload {
-//  public static final ClientboundPlayPunchAnimationPayload INSTANCE = new ClientboundPlayPunchAnimationPayload();
-//  public static final Type<ClientboundPlayPunchAnimationPayload> TYPE =
-//          new Type<>(QuirksUnleashed.modLoc("clientbound_play_punch_animation_payload"));
-//  public static final StreamCodec<ByteBuf, ClientboundPlayPunchAnimationPayload> CODEC = StreamCodec.unit(INSTANCE);
     public static final ClientboundPlayPunchAnimationPayload INSTANCE = new ClientboundPlayPunchAnimationPayload();
     public static final Type<ClientboundPlayPunchAnimationPayload> TYPE =
             new Type<>(QuirksUnleashed.modLoc("clientbound_play_punch_animation_payload"));

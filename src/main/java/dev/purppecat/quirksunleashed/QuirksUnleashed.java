@@ -1,8 +1,17 @@
 package dev.purppecat.quirksunleashed;
 
+import dev.purppecat.quirksunleashed.api.core.registries.QuirksUnleashedRegistries;
+import dev.purppecat.quirksunleashed.api.world.attachment.QuirksUnleashedAttachmentTypes;
+import dev.purppecat.quirksunleashed.impl.client.QuirksUnleashedKeyMappings;
+import dev.purppecat.quirksunleashed.impl.core.QuirksUnleashedCoreEvents;
+import dev.purppecat.quirksunleashed.impl.data.QuirksUnleashedDataGenerators;
+import dev.purppecat.quirksunleashed.impl.network.QuirksUnleashedPayloads;
+import dev.purppecat.quirksunleashed.impl.world.entity.QuirksUnleashedEntityEvents;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,7 +23,17 @@ public class QuirksUnleashed {
 
     public static final int API_VERSION = 1;
 
-    public QuirksUnleashed(IEventBus modEventBus) {}
+    public QuirksUnleashed(IEventBus modEventBus) {
+        QuirksUnleashedKeyMappings.init();
+        QuirksUnleashedAttachmentTypes.init();
+
+        modEventBus.addListener(QuirksUnleashedDataGenerators::onGatherData);
+        modEventBus.addListener(QuirksUnleashedPayloads::onRegisterPackets);
+        modEventBus.addListener(QuirksUnleashedCoreEvents::onNewDataPackRegistry);
+
+        NeoForge.EVENT_BUS.addListener(QuirksUnleashedEntityEvents::onEntityInteract);
+        NeoForge.EVENT_BUS.addListener(QuirksUnleashedEntityEvents::OnHitEntity);
+    }
 
     public static ResourceLocation modLoc(String path) {
         return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
