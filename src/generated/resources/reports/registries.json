@@ -1,0 +1,13 @@
+{
+  "neoforge:attachment_types": [
+    "quirksunleashed:fighting_style",
+    "quirksunleashed:fighting_styles"
+  ],
+  "neoforge:synced_attachment_types": [
+    "quirksunleashed:fighting_style",
+    "quirksunleashed:fighting_styles"
+  ],
+  "quirksunleashed:fighting_style": [
+    "quirksunleashed:default"
+  ]
+}
