@@ -12,7 +12,7 @@ import java.util.List;
 
 public class QuirksUnleashedPayloads {
     public static List<PayloadInfo<?>> PAYLOADS = ImmutableList.of(
-            new PayloadInfo<>(ClientboundPlayPunchAnimationPayload.TYPE, ExtendedPacketPayload.Direction.SERVER_TO_CLIENT, ClientboundPlayPunchAnimationPayload.CODEC));
+            new PayloadInfo<>(ClientboundPlayAnimationPayload.TYPE, ExtendedPacketPayload.Direction.SERVER_TO_CLIENT, ClientboundPlayAnimationPayload.STREAM_CODEC));
 
     public static void onRegisterPackets(RegisterPayloadHandlersEvent event) {
         PayloadRegistrar registrar = event.registrar(QuirksUnleashed.MOD_ID);

@@ -8,14 +8,15 @@ import com.zigythebird.playeranim.api.PlayerAnimationFactory;
 import com.zigythebird.playeranimcore.enums.PlayState;
 import dev.purppecat.quirksunleashed.api.world.attachment.QuirksUnleashedAttachmentTypes;
 import dev.purppecat.quirksunleashed.api.world.combat.FightingStyleData;
-import dev.purppecat.quirksunleashed.impl.network.ClientboundPlayPunchAnimationPayload;
+import dev.purppecat.quirksunleashed.impl.network.ClientboundPlayAnimationPayload;
 import dev.thomasglasser.tommylib.api.platform.TommyLibServices;
 import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.event.entity.player.AttackEntityEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 
@@ -48,17 +49,19 @@ public class QuirksUnleashedEntityEvents {
     }
 
     public static void OnHitEntity(AttackEntityEvent event) {
-        Player player = event.getEntity();
-        if ((player.getMainHandItem().isEmpty())) {
-            if (player instanceof AbstractClientPlayer clientPlayer) {
-                PlayerAnimationFactory.ANIMATION_DATA_FACTORY.registerFactory(ANIMATION_LAYER_ID, 1502,
-                        clientPlayer1 -> new PlayerAnimationController(clientPlayer,
-                                (controller, state, animSetter) -> PlayState.STOP));
-                PlayerAnimationController controller = (PlayerAnimationController) PlayerAnimationAccess.getPlayerAnimationLayer(
-                        clientPlayer, ANIMATION_LAYER_ID);
-                TommyLibServices.NETWORK.sendToClient(ClientboundPlayPunchAnimationPayload.INSTANCE, ((ServerPlayer) player));
+        AbstractClientPlayer player = (AbstractClientPlayer) event.getEntity();
+        Level level = player.level();
+        if (level instanceof ServerLevel serverLevel) {
+            if ((player.getMainHandItem().isEmpty())) {
+                FightingStyleData abilityEffectData = player.getData(QuirksUnleashedAttachmentTypes.FIGHTING_STYLE);
+                TommyLibServices.NETWORK.sendToTrackingClients(new ClientboundPlayAnimationPayload(abilityEffectData.punch1(), event.getTarget().getId()), event.getTarget());
+                player.sendSystemMessage(Component.literal(abilityEffectData.punch1().toString() + " sigma"));
+                player.sendSystemMessage(Component.literal(event.getTarget() + " sigma"));
+                player.sendSystemMessage(Component.literal(player + " sigma"));
+                player.sendSystemMessage(Component.literal(event.getTarget().getId() + " sigma"));
+                player.sendSystemMessage(Component.literal(player.getId() + " sigma"));
+                player.sendSystemMessage(Component.literal(serverLevel + " sigma"));
             }
-            player.sendSystemMessage(Component.literal("yo"));
         }
     }
 }
