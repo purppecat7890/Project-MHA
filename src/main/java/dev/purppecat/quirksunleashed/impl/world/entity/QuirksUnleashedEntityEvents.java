@@ -55,12 +55,6 @@ public class QuirksUnleashedEntityEvents {
             if ((player.getMainHandItem().isEmpty())) {
                 FightingStyleData abilityEffectData = player.getData(QuirksUnleashedAttachmentTypes.FIGHTING_STYLE);
                 TommyLibServices.NETWORK.sendToTrackingClients(new ClientboundPlayAnimationPayload(abilityEffectData.punch1(), event.getTarget().getId()), event.getTarget());
-                player.sendSystemMessage(Component.literal(abilityEffectData.punch1().toString() + " sigma"));
-                player.sendSystemMessage(Component.literal(event.getTarget() + " sigma"));
-                player.sendSystemMessage(Component.literal(player + " sigma"));
-                player.sendSystemMessage(Component.literal(event.getTarget().getId() + " sigma"));
-                player.sendSystemMessage(Component.literal(player.getId() + " sigma"));
-                player.sendSystemMessage(Component.literal(serverLevel + " sigma"));
             }
         }
     }
