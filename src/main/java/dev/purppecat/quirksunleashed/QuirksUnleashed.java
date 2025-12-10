@@ -33,6 +33,8 @@ public class QuirksUnleashed {
 
         NeoForge.EVENT_BUS.addListener(QuirksUnleashedEntityEvents::onEntityInteract);
         NeoForge.EVENT_BUS.addListener(QuirksUnleashedEntityEvents::OnHitEntity);
+        NeoForge.EVENT_BUS.addListener(QuirksUnleashedEntityEvents::onEntityJoinedLevel);
+
     }
 
     public static ResourceLocation modLoc(String path) {

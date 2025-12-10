@@ -17,6 +17,7 @@ import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
 import net.neoforged.neoforge.event.entity.player.AttackEntityEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 
@@ -48,13 +49,23 @@ public class QuirksUnleashedEntityEvents {
         }
     }
 
+    public static void onEntityJoinedLevel(EntityJoinLevelEvent event) {
+        Entity entity = event.getEntity();
+        if (entity instanceof AbstractClientPlayer clientPlayer) {
+            PlayerAnimationFactory.ANIMATION_DATA_FACTORY.registerFactory(ANIMATION_LAYER_ID, 1502,
+                    clientPlayer1 -> new PlayerAnimationController(clientPlayer,
+                            (controller, state, animSetter) -> PlayState.STOP));
+        }
+    }
+
     public static void OnHitEntity(AttackEntityEvent event) {
-        AbstractClientPlayer player = (AbstractClientPlayer) event.getEntity();
+        Player player = event.getEntity();
+        Entity targetEntity = event.getTarget();
         Level level = player.level();
         if (level instanceof ServerLevel serverLevel) {
             if ((player.getMainHandItem().isEmpty())) {
-                FightingStyleData abilityEffectData = player.getData(QuirksUnleashedAttachmentTypes.FIGHTING_STYLE);
-                TommyLibServices.NETWORK.sendToTrackingClients(new ClientboundPlayAnimationPayload(abilityEffectData.punch1(), event.getTarget().getId()), event.getTarget());
+                FightingStyleData abilityEffectData = serverLevel.getEntity(player.getId()).getData(QuirksUnleashedAttachmentTypes.FIGHTING_STYLE);
+                TommyLibServices.NETWORK.sendToTrackingClients(new ClientboundPlayAnimationPayload(abilityEffectData.punch1(), player.getId()), player);
             }
         }
     }
