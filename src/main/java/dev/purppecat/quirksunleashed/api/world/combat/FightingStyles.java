@@ -1,4 +1,4 @@
-package dev.purppecat.quirksunleashed.impl.world.combat;
+package dev.purppecat.quirksunleashed.api.world.combat;
 
 import dev.purppecat.quirksunleashed.QuirksUnleashed;
 import dev.purppecat.quirksunleashed.api.core.registries.QuirksUnleashedRegistries;

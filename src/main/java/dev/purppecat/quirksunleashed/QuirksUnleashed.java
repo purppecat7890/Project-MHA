@@ -1,6 +1,5 @@
 package dev.purppecat.quirksunleashed;
 
-import dev.purppecat.quirksunleashed.api.core.registries.QuirksUnleashedRegistries;
 import dev.purppecat.quirksunleashed.api.world.attachment.QuirksUnleashedAttachmentTypes;
 import dev.purppecat.quirksunleashed.impl.client.QuirksUnleashedKeyMappings;
 import dev.purppecat.quirksunleashed.impl.core.QuirksUnleashedCoreEvents;
@@ -11,7 +10,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.NeoForge;
-import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

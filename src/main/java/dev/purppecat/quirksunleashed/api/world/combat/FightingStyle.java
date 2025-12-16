@@ -1,4 +1,4 @@
-package dev.purppecat.quirksunleashed.impl.world.combat;
+package dev.purppecat.quirksunleashed.api.world.combat;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;

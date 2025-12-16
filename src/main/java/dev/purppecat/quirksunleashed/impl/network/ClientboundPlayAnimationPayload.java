@@ -3,6 +3,7 @@ package dev.purppecat.quirksunleashed.impl.network;
 import com.zigythebird.playeranim.animation.PlayerAnimationController;
 import com.zigythebird.playeranim.api.PlayerAnimationAccess;
 import com.zigythebird.playeranim.api.PlayerAnimationFactory;
+import com.zigythebird.playeranimcore.api.firstPerson.FirstPersonConfiguration;
 import com.zigythebird.playeranimcore.enums.PlayState;
 import dev.purppecat.quirksunleashed.QuirksUnleashed;
 import dev.thomasglasser.tommylib.api.network.ExtendedPacketPayload;
@@ -41,6 +42,12 @@ public record ClientboundPlayAnimationPayload(ResourceLocation location, int tar
             PlayerAnimationController controller = (PlayerAnimationController) PlayerAnimationAccess.getPlayerAnimationLayer(
                     clientPlayer, ANIMATION_LAYER_ID);
             if (controller != null) {
+
+                FirstPersonConfiguration firstPersonConfiguration = controller.getFirstPersonConfiguration();
+                firstPersonConfiguration.setShowRightArm(true);
+                firstPersonConfiguration.setShowLeftArm(true);
+                firstPersonConfiguration.setShowArmor(true);
+                controller.setFirstPersonConfiguration(firstPersonConfiguration);
                 controller.triggerAnimation(location);
             }
         }

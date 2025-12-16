@@ -2,7 +2,7 @@ package dev.purppecat.quirksunleashed.impl.data;
 
 import dev.purppecat.quirksunleashed.QuirksUnleashed;
 import dev.purppecat.quirksunleashed.api.core.registries.QuirksUnleashedRegistries;
-import dev.purppecat.quirksunleashed.impl.world.combat.FightingStyles;
+import dev.purppecat.quirksunleashed.api.world.combat.FightingStyles;
 import dev.thomasglasser.tommylib.api.data.DataGenerationUtils;
 import net.minecraft.core.RegistrySetBuilder;
 import net.neoforged.neoforge.data.event.GatherDataEvent;

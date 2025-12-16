@@ -1,0 +1,34 @@
+package dev.purppecat.quirksunleashed.impl.network;
+
+import dev.purppecat.quirksunleashed.QuirksUnleashed;
+import dev.purppecat.quirksunleashed.api.world.attachment.QuirksUnleashedAttachmentTypes;
+import dev.thomasglasser.tommylib.api.network.ExtendedPacketPayload;
+import io.netty.buffer.ByteBuf;
+import it.unimi.dsi.fastutil.objects.ReferenceArrayList;
+import net.minecraft.core.Holder;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+import net.minecraft.world.entity.EntityAttachments;
+import net.minecraft.world.entity.player.Player;
+import net.neoforged.neoforge.attachment.AttachmentType;
+
+import java.util.List;
+
+public class ServerboundToggleCombatMode implements ExtendedPacketPayload {
+    public static final ServerboundToggleCombatMode INSTANCE = new ServerboundToggleCombatMode();
+    public static final Type<ServerboundToggleCombatMode> TYPE = new Type<>(QuirksUnleashed.modLoc("serverbound_toggle_combat_mode"));
+    public static final StreamCodec<ByteBuf, ServerboundToggleCombatMode> CODEC = StreamCodec.unit(INSTANCE);
+
+    @Override
+    public void handle(Player player) {
+        player.setData(QuirksUnleashedAttachmentTypes.COMBAT_MODE, !player.getData(QuirksUnleashedAttachmentTypes.COMBAT_MODE));
+        System.out.println(player.getDisplayName() + " - Combat Mode: " + player.getData(QuirksUnleashedAttachmentTypes.COMBAT_MODE));
+        player.displayClientMessage(Component.literal("Combat Mode: " + player.getData(QuirksUnleashedAttachmentTypes.COMBAT_MODE)), true);
+    }
+
+    @Override
+    public Type<? extends CustomPacketPayload> type() {
+        return TYPE;
+    }
+}

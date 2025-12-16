@@ -1,7 +1,7 @@
 package dev.purppecat.quirksunleashed.impl.core;
 
 import dev.purppecat.quirksunleashed.api.core.registries.QuirksUnleashedRegistries;
-import dev.purppecat.quirksunleashed.impl.world.combat.FightingStyle;
+import dev.purppecat.quirksunleashed.api.world.combat.FightingStyle;
 import net.neoforged.neoforge.registries.DataPackRegistryEvent;
 
 public class QuirksUnleashedCoreEvents {

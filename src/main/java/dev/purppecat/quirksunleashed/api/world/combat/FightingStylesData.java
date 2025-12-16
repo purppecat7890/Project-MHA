@@ -5,7 +5,6 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.mojang.serialization.codecs.UnboundedMapCodec;
 import dev.purppecat.quirksunleashed.api.world.attachment.QuirksUnleashedAttachmentTypes;
-import dev.purppecat.quirksunleashed.impl.world.combat.FightingStyle;
 import it.unimi.dsi.fastutil.objects.Reference2ObjectOpenHashMap;
 import java.util.List;
 import java.util.Map;

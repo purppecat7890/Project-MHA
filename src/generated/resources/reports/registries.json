@@ -1,7 +1,9 @@
 {
   "neoforge:attachment_types": [
+    "quirksunleashed:combat_mode",
     "quirksunleashed:fighting_style",
-    "quirksunleashed:fighting_styles"
+    "quirksunleashed:fighting_styles",
+    "quirksunleashed:punch_counter"
   ],
   "neoforge:synced_attachment_types": [
     "quirksunleashed:fighting_style",

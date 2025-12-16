@@ -12,6 +12,8 @@ import java.util.List;
 
 public class QuirksUnleashedPayloads {
     public static List<PayloadInfo<?>> PAYLOADS = ImmutableList.of(
+            new PayloadInfo<>(ServerboundToggleCombatMode.TYPE, ExtendedPacketPayload.Direction.CLIENT_TO_SERVER, ServerboundToggleCombatMode.CODEC),
+            new PayloadInfo<>(ClientboundPunchCounterHandler.TYPE, ExtendedPacketPayload.Direction.SERVER_TO_CLIENT, ClientboundPunchCounterHandler.CODEC),
             new PayloadInfo<>(ClientboundPlayAnimationPayload.TYPE, ExtendedPacketPayload.Direction.SERVER_TO_CLIENT, ClientboundPlayAnimationPayload.STREAM_CODEC));
 
     public static void onRegisterPackets(RegisterPayloadHandlersEvent event) {

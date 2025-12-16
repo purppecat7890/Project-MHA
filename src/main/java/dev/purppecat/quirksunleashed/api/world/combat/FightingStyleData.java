@@ -45,4 +45,18 @@ public record FightingStyleData(ResourceLocation punch1, ResourceLocation punch2
     public FightingStyleData() {
         this(QuirksUnleashed.modLoc("punch"), QuirksUnleashed.modLoc("punch2"), QuirksUnleashed.modLoc("punch3"), QuirksUnleashed.modLoc("stance"), QuirksUnleashed.modLoc("stance_sneak"), QuirksUnleashed.modLoc("block"), QuirksUnleashed.modLoc("counter"), QuirksUnleashed.modLoc("heavy"));
     }
+
+    public FightingStyleData(FightingStyle style) {
+        this(
+                style.punch1(),
+                style.punch2(),
+                style.punch3(),
+                style.stance(),
+                style.stanceSneak(),
+                style.block(),
+                style.counter(),
+                style.heavy()
+        );
+    }
+
 }
