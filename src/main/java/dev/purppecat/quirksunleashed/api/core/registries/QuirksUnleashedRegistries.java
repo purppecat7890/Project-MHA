@@ -2,10 +2,9 @@ package dev.purppecat.quirksunleashed.api.core.registries;
 
 import dev.purppecat.quirksunleashed.QuirksUnleashed;
 import dev.purppecat.quirksunleashed.api.world.combat.FightingStyle;
-import net.minecraft.core.Holder;
+import dev.purppecat.quirksunleashed.api.world.quirk.Quirk;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 
 public class QuirksUnleashedRegistries {
     /// Data-driven registry holding {@link FightingStyle}es containing animation entries.

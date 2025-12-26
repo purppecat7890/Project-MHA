@@ -1,12 +1,12 @@
 {
 	"format_version": "1.8.0",
 	"animations": {
-		"stance": {
+		"default_stance_sneak": {
 			"animation_length": 0.5,
 			"bones": {
 				"torso": {
-					"rotation": [1.66218, -22.4223, -1.07882],
-					"position": [0, 0, -0.225]
+					"rotation": [19.41218, -22.4223, -1.07882],
+					"position": [0, 0, -2.1]
 				},
 				"head": {
 					"position": [0, 0, -0.35]
@@ -21,11 +21,11 @@
 				},
 				"right_leg": {
 					"rotation": [-1.75, 0, 0],
-					"position": [-0.175, 0, -1.2]
+					"position": [-0.175, 0.65, -1.2]
 				},
 				"left_leg": {
 					"rotation": [9, 0, 0],
-					"position": [0.35, 0, 0.425]
+					"position": [0.35, 0.55, 1.35]
 				}
 			}
 		}

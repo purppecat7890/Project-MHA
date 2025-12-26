@@ -5,10 +5,9 @@ import dev.purppecat.quirksunleashed.QuirksUnleashed;
 import dev.thomasglasser.tommylib.api.network.ExtendedPacketPayload;
 import dev.thomasglasser.tommylib.api.network.NeoForgeNetworkUtils;
 import dev.thomasglasser.tommylib.api.network.PayloadInfo;
+import java.util.List;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
-
-import java.util.List;
 
 public class QuirksUnleashedPayloads {
     public static List<PayloadInfo<?>> PAYLOADS = ImmutableList.of(

@@ -2,10 +2,12 @@ package dev.purppecat.quirksunleashed;
 
 import dev.purppecat.quirksunleashed.api.world.attachment.QuirksUnleashedAttachmentTypes;
 import dev.purppecat.quirksunleashed.impl.client.QuirksUnleashedKeyMappings;
+import dev.purppecat.quirksunleashed.impl.commands.QuirksUnleashedCommandEvents;
 import dev.purppecat.quirksunleashed.impl.core.QuirksUnleashedCoreEvents;
 import dev.purppecat.quirksunleashed.impl.data.QuirksUnleashedDataGenerators;
 import dev.purppecat.quirksunleashed.impl.network.QuirksUnleashedPayloads;
 import dev.purppecat.quirksunleashed.impl.world.entity.QuirksUnleashedEntityEvents;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
@@ -28,14 +30,25 @@ public class QuirksUnleashed {
         modEventBus.addListener(QuirksUnleashedDataGenerators::onGatherData);
         modEventBus.addListener(QuirksUnleashedPayloads::onRegisterPackets);
         modEventBus.addListener(QuirksUnleashedCoreEvents::onNewDataPackRegistry);
+        modEventBus.addListener(QuirksUnleashedCoreEvents::FMLClientSetup);
 
         NeoForge.EVENT_BUS.addListener(QuirksUnleashedEntityEvents::onEntityInteract);
+        NeoForge.EVENT_BUS.addListener(QuirksUnleashedCommandEvents::onCommandsRegister);
         NeoForge.EVENT_BUS.addListener(QuirksUnleashedEntityEvents::OnHitEntity);
         NeoForge.EVENT_BUS.addListener(QuirksUnleashedEntityEvents::onEntityJoinedLevel);
-
     }
 
     public static ResourceLocation modLoc(String path) {
         return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
+    }
+
+    /**
+     * Converts a {@link ResourceKey} to a language key.
+     *
+     * @param key The key to convert
+     * @return The language key
+     */
+    public static String toLanguageKey(ResourceKey<?> key) {
+        return key.location().toLanguageKey(key.registry().getPath());
     }
 }

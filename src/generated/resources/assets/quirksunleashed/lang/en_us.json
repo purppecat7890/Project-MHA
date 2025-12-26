@@ -1,0 +1,7 @@
+{
+  "commands.miraculous.fighting_style.invalid": "Invalid fighting style type %s",
+  "commands.miraculous.fighting_style.query.success.other": "%s's fighting style is %s.",
+  "commands.miraculous.fighting_style.query.success.self": "Your fighting style is %s.",
+  "commands.miraculous.fighting_style.set.success.other": "Set %s's fighting style to %s.",
+  "commands.miraculous.fighting_style.set.success.self": "Your fighting style has been set to %s."
+}

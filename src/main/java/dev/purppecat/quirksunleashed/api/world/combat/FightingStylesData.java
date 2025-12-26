@@ -1,5 +1,6 @@
 package dev.purppecat.quirksunleashed.api.world.combat;
 
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Maps;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -15,6 +16,7 @@ import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.entity.Entity;
+import org.jetbrains.annotations.ApiStatus;
 
 public class FightingStylesData {
     public static final UnboundedMapCodec<Holder<FightingStyle>, FightingStyleData> MAP_CODEC = Codec.unboundedMap(FightingStyle.CODEC, FightingStyleData.CODEC);
@@ -38,11 +40,21 @@ public class FightingStylesData {
         this.map = new Reference2ObjectOpenHashMap<>(map);
     }
 
-    public FightingStyleData get(Holder<FightingStyleData> key) {
+    public FightingStyleData get(Holder<FightingStyle> key) {
         return map.getOrDefault(key, new FightingStyleData());
     }
 
-    public FightingStyleData put(Entity entity, Holder<FightingStyle> key, FightingStyleData value, boolean syncToClient) {
+    public List<Holder<FightingStyle>> getStyle() {
+        ImmutableList.Builder<Holder<FightingStyle>> keys = new ImmutableList.Builder<>();
+        for (Holder<FightingStyle> key : map.keySet()) {
+            keys.add(key);
+        }
+        return keys.build();
+    }
+
+    @ApiStatus.Internal
+    /// @see MiraculousData#save(Holder, Entity)
+    public FightingStyleData put(Entity entity, Holder<FightingStyle> key, FightingStyleData value) {
         FightingStyleData data = map.put(key, value);
         save(entity);
         return data;
