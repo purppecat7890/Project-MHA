@@ -17,9 +17,8 @@ public class ServerboundToggleCombatMode implements ExtendedPacketPayload {
     @Override
     public void handle(Player player) {
         player.setData(QuirksUnleashedAttachmentTypes.COMBAT_MODE, !player.getData(QuirksUnleashedAttachmentTypes.COMBAT_MODE));
-        System.out.println(player.getDisplayName() + " - Combat Mode: " + player.getData(QuirksUnleashedAttachmentTypes.COMBAT_MODE));
+        QuirksUnleashed.LOGGER.info(player.getGameProfile().getName() + " - Combat Mode: " + player.getData(QuirksUnleashedAttachmentTypes.COMBAT_MODE));
         player.displayClientMessage(Component.literal("Combat Mode: " + player.getData(QuirksUnleashedAttachmentTypes.COMBAT_MODE)), true);
-
     }
 
     @Override

@@ -1,0 +1,9 @@
+{
+  "type": "quirksunleashed:finite_passive_effects",
+  "duration": 20,
+  "effects": [
+    "minecraft:jump_boost",
+    "minecraft:slow_falling"
+  ],
+  "start_amplifier": 2
+}

@@ -1,37 +1,23 @@
 package dev.purppecat.quirksunleashed.impl.world.entity;
 
-import static com.zigythebird.playeranim.PlayerAnimLibMod.ANIMATION_LAYER_ID;
-
-import com.zigythebird.playeranim.animation.PlayerAnimResources;
-import com.zigythebird.playeranim.animation.PlayerAnimationController;
-import com.zigythebird.playeranim.api.PlayerAnimationAccess;
-import com.zigythebird.playeranim.api.PlayerAnimationFactory;
-import com.zigythebird.playeranimcore.enums.PlayState;
-import dev.purppecat.quirksunleashed.QuirksUnleashed;
-import dev.purppecat.quirksunleashed.api.core.registries.QuirksUnleashedRegistries;
 import dev.purppecat.quirksunleashed.api.world.attachment.QuirksUnleashedAttachmentTypes;
 import dev.purppecat.quirksunleashed.api.world.combat.FightingStyle;
-import dev.purppecat.quirksunleashed.api.world.combat.FightingStyleData;
-import dev.purppecat.quirksunleashed.api.world.combat.FightingStyles;
-import dev.purppecat.quirksunleashed.api.world.combat.FightingStylesData;
 import dev.purppecat.quirksunleashed.impl.network.ClientboundPlayAnimationPayload;
-import dev.purppecat.quirksunleashed.impl.network.ClientboundPunchCounterHandler;
 import dev.thomasglasser.tommylib.api.platform.TommyLibServices;
-import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
 import net.neoforged.neoforge.event.entity.player.AttackEntityEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
-
-import java.util.List;
+import net.neoforged.neoforge.event.tick.EntityTickEvent;
 
 public class QuirksUnleashedEntityEvents {
     public static void onEntityInteract(PlayerInteractEvent.EntityInteract event) {
@@ -51,10 +37,17 @@ public class QuirksUnleashedEntityEvents {
         }
     }
 
-    public static void onEntityJoinedLevel(EntityJoinLevelEvent event) {
-    }
-    
+    public static void onPostEntityTick(EntityTickEvent.Post event) {
+        Entity entity = event.getEntity();
+        if (entity.level() instanceof ServerLevel level) {
+            if (entity instanceof LivingEntity livingEntity) {
+                entity.getData(QuirksUnleashedAttachmentTypes.QUIRKS).tick(livingEntity, level);
+            }
+        }
 
+    }
+
+    public static void onEntityJoinedLevel(EntityJoinLevelEvent event) {}
 
     public static void OnHitEntity(AttackEntityEvent event) {
         Player player = event.getEntity();
@@ -82,7 +75,6 @@ public class QuirksUnleashedEntityEvents {
                     };
                     TommyLibServices.NETWORK.sendToTrackingClients(new ClientboundPlayAnimationPayload(animLocation, player.getId()), player); // tracking
 //                        TommyLibServices.NETWORK.sendToClient(new ClientboundPunchCounterHandler(player1.getId(), punchCount), ((ServerPlayer) player1));;
-                    System.out.println(animLocation);
                 }
             }
         }

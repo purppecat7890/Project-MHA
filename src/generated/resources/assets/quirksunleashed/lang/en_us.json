@@ -1,7 +1,21 @@
 {
+  "ability.quirksunleashed.high_jump": "High Jump",
+  "ability.quirksunleashed.none": "None",
   "commands.miraculous.fighting_style.invalid": "Invalid fighting style type %s",
   "commands.miraculous.fighting_style.query.success.other": "%s's fighting style is %s.",
   "commands.miraculous.fighting_style.query.success.self": "Your fighting style is %s.",
   "commands.miraculous.fighting_style.set.success.other": "Set %s's fighting style to %s.",
-  "commands.miraculous.fighting_style.set.success.self": "Your fighting style has been set to %s."
+  "commands.miraculous.fighting_style.set.success.self": "Your fighting style has been set to %s.",
+  "commands.quirk.invalid": "Invalid Quirk %s",
+  "commands.quirk.query.success.other": "%s's Quirk is %s.",
+  "commands.quirk.query.success.self": "Your Quirk is %s.",
+  "commands.quirk.set.success.other": "Set %s's Quirk to %s.",
+  "commands.quirk.set.success.self": "Your Quirk has been set to %s.",
+  "fighting_style.quirksunleashed.default": "Default",
+  "key.categories.quirksunleashed": "Quirks Unleashed",
+  "key.quirksunleashed.activate_ability": "Activate Ability",
+  "key.quirksunleashed.activate_quirk": "Toggle Quirk",
+  "key.quirksunleashed.toggle_combat": "Toggle Combat",
+  "quirk.quirksunleashed.leap": "Leap",
+  "quirk.quirksunleashed.quirkless": "Quirkless"
 }
