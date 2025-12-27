@@ -2,7 +2,6 @@ package dev.purppecat.quirksunleashed.api.world.combat;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import dev.purppecat.quirksunleashed.QuirksUnleashed;
 import dev.purppecat.quirksunleashed.api.world.attachment.QuirksUnleashedAttachmentTypes;
 import dev.thomasglasser.tommylib.api.util.TommyLibExtraStreamCodecs;
 import net.minecraft.core.Holder;

@@ -1,7 +1,6 @@
 package dev.purppecat.quirksunleashed.impl.server.commands;
 
 import com.mojang.brigadier.CommandDispatcher;
-import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.exceptions.DynamicCommandExceptionType;
@@ -9,17 +8,13 @@ import dev.purppecat.quirksunleashed.QuirksUnleashed;
 import dev.purppecat.quirksunleashed.api.core.registries.QuirksUnleashedRegistries;
 import dev.purppecat.quirksunleashed.api.world.attachment.QuirksUnleashedAttachmentTypes;
 import dev.purppecat.quirksunleashed.api.world.combat.FightingStyle;
-import dev.purppecat.quirksunleashed.api.world.combat.FightingStyleData;
-import dev.purppecat.quirksunleashed.api.world.combat.FightingStylesData;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.EntityArgument;
 import net.minecraft.commands.arguments.ResourceKeyArgument;
 import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.Entity;
-import org.codehaus.plexus.util.dag.DAG;
 
 public class FightingStyleCommand {
     public static final int COMMANDS_ENABLED_PERMISSION_LEVEL = 2;
@@ -33,11 +28,9 @@ public class FightingStyleCommand {
     // Exceptions
     public static final String EXCEPTION_INVALID_FIGHTING_STYLE = "commands.miraculous.fighting_style.invalid";
     private static final DynamicCommandExceptionType ERROR_INVALID_FIGHTING_STYLE = new DynamicCommandExceptionType(
-            arg -> Component.translatableEscape(EXCEPTION_INVALID_FIGHTING_STYLE, arg)
-    );
+            arg -> Component.translatableEscape(EXCEPTION_INVALID_FIGHTING_STYLE, arg));
     private static final DynamicCommandExceptionType ERROR_NOT_LIVING_ENTITY = new DynamicCommandExceptionType(
-            entity -> Component.translatableEscape("commands.attribute.failed.entity", entity)
-    );
+            entity -> Component.translatableEscape("commands.attribute.failed.entity", entity));
 
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
         dispatcher.register(
@@ -51,8 +44,7 @@ public class FightingStyleCommand {
                                         .executes(ctx -> {
                                             Entity target = EntityArgument.getEntity(ctx, "target");
                                             return getFightingStyle(target, ctx, target == ctx.getSource().getEntity());
-                                        }))
-                        )
+                                        })))
 
                         // Set command
                         .then(Commands.literal("set")
@@ -62,10 +54,7 @@ public class FightingStyleCommand {
                                                 .executes(ctx -> {
                                                     Entity target = EntityArgument.getEntity(ctx, "target");
                                                     return setFightingStyle(target, ctx, target == ctx.getSource().getEntity());
-                                                }))
-                                )
-                        )
-        );
+                                                })))));
     }
 
     private static int getFightingStyle(Entity entity, CommandContext<CommandSourceStack> context, boolean self) throws CommandSyntaxException {

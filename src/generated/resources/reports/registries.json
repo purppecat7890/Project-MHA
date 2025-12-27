@@ -1,15 +1,28 @@
 {
   "neoforge:attachment_types": [
     "quirksunleashed:combat_mode",
-    "quirksunleashed:fighting_style",
     "quirksunleashed:fighting_styles",
-    "quirksunleashed:punch_counter"
+    "quirksunleashed:punch_counter",
+    "quirksunleashed:quirk_activated",
+    "quirksunleashed:quirks"
   ],
   "neoforge:synced_attachment_types": [
-    "quirksunleashed:fighting_style",
-    "quirksunleashed:fighting_styles"
+    "quirksunleashed:fighting_styles",
+    "quirksunleashed:quirks"
+  ],
+  "quirksunleashed:ability": [
+    "quirksunleashed:high_jump",
+    "quirksunleashed:none"
+  ],
+  "quirksunleashed:ability_serializer": [
+    "quirksunleashed:finite_passive_effects",
+    "quirksunleashed:passive_effects"
   ],
   "quirksunleashed:fighting_style": [
     "quirksunleashed:default"
+  ],
+  "quirksunleashed:quirk": [
+    "quirksunleashed:leap",
+    "quirksunleashed:quirkless"
   ]
 }
